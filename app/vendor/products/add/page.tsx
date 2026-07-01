@@ -1,5 +1,7 @@
 'use client'
 
+export const dynamic = 'force-dynamic';
+
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { ArrowLeft, PlusCircle, Package, Tag, DollarSign, Layers } from 'lucide-react'
@@ -24,6 +26,7 @@ export default function AddProduct() {
   const generateSlug = (text: string) => {
     return text
       .toLowerCase()
+      .trim()
       .replace(/[^a-z0-9 -]/g, '') // remove invalid chars
       .replace(/\s+/g, '-') // collapse whitespace and replace by -
       .replace(/-+/g, '-') // collapse dashes
@@ -45,7 +48,7 @@ export default function AddProduct() {
       const productSlug = generateSlug(name)
 
       // Supabase products table mein insert query
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('products')
         .insert([
           {
@@ -242,4 +245,3 @@ export default function AddProduct() {
     </div>
   )
 }
-export const dynamic = 'force-dynamic';
