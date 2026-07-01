@@ -242,3 +242,4 @@ export default function AddProduct() {
     </div>
   )
 }
+export const dynamic = 'force-dynamic';
