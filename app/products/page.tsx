@@ -248,3 +248,4 @@ export default function ProductsPage() {
     </Suspense>
   )
 }
+export const dynamic = 'force-dynamic'
