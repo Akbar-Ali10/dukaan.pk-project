@@ -1,0 +1,39 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@theme inline {
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+}
+
+:root {
+  --background: #F9FAFB;
+  --foreground: #1F2937;
+  --primary-blue: #1D4ED8;
+  --muted-text: #6B7280;
+  --trust-badge-bg: #FEF3C7;
+  --trust-badge-text: #92400E;
+  --low-stock-orange: #D97706;
+  --border-light: #E5E7EB;
+}
+
+@keyframes pulse-orange {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.pulse-low-stock {
+  animation: pulse-orange 1.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@layer base {
+  body {
+    @apply bg-[#F9FAFB] text-[#1F2937];
+  }
+  html {
+    @apply font-sans;
+  }
+}
