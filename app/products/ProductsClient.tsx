@@ -10,6 +10,7 @@ import WhatsAppFAB from '@/components/WhatsAppFAB'
 import { supabase } from '@/lib/supabase'
 import type { ProductStatus } from '@/components/ProductCard'
 
+
 interface Product {
   id: string
   name: string
