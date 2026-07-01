@@ -1,5 +1,7 @@
 'use client'
 
+export const dynamic = 'force-dynamic'
+
 import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Header from '@/components/Header'
@@ -75,21 +77,16 @@ function ProductsContent() {
   useEffect(() => {
     let products = [...allProducts]
 
-    // Search Filter
     if (searchQuery.trim()) {
       products = products.filter((p) =>
         p.name.toLowerCase().includes(searchQuery.toLowerCase())
       )
     }
 
-    // Category Filter
     if (activeCategory !== 'All') {
-      products = products.filter(
-        (p) => p.category === activeCategory
-      )
+      products = products.filter((p) => p.category === activeCategory)
     }
 
-    // Sorting
     if (sortOption === 'price-low') {
       products.sort((a, b) => a.price - b.price)
     } else if (sortOption === 'price-high') {
@@ -113,9 +110,7 @@ function ProductsContent() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <div>
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
-              {searchQuery
-                ? `"${searchQuery}" ke results`
-                : 'Products'}
+              {searchQuery ? `"${searchQuery}" ke results` : 'Products'}
             </h1>
 
             <p className="text-gray-600 text-sm mt-1">
@@ -151,80 +146,9 @@ function ProductsContent() {
 
       <footer className="bg-[#1F2937] text-white mt-16 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <h3 className="text-xl font-bold text-[#1D4ED8] mb-4">
-                dukaan.pk
-              </h3>
-              <p className="text-gray-400">
-                Pakistan&apos;s fastest growing e-commerce platform
-                with 100% Cash on Delivery
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Contact
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Careers
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-4">Help</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    FAQ
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Returns
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Shipping
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-4">Legal</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Terms & Conditions
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
           <div className="border-t border-gray-700 pt-8">
             <p className="text-center text-gray-400">
-              &copy; 2026 dukaan.pk. All rights reserved. |
-              Cash on Delivery Available Nationwide
+              &copy; 2026 dukaan.pk. All rights reserved.
             </p>
           </div>
         </div>
@@ -248,4 +172,3 @@ export default function ProductsPage() {
     </Suspense>
   )
 }
-export const dynamic = 'force-dynamic'
