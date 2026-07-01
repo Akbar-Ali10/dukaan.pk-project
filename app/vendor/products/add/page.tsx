@@ -1,6 +1,5 @@
-'use client'
-
 export const dynamic = 'force-dynamic';
+'use client'
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
@@ -9,7 +8,7 @@ import { supabase } from '@/lib/supabase'
 
 export default function AddProduct() {
   const router = useRouter()
-  
+
   // Form States fields ke mutabik
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
@@ -18,7 +17,7 @@ export default function AddProduct() {
   const [stock, setStock] = useState('')
   const [category, setCategory] = useState('Electronics') // Default value jo table mein hai
   const [imageUrl, setImageUrl] = useState('')
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
 
@@ -68,7 +67,7 @@ export default function AddProduct() {
       if (error) throw error
 
       setMessage({ type: 'success', text: 'Product added successfully into dukaan.pk!' })
-      
+
       // Form fields clear karne ke liye
       setName('')
       setDescription('')
@@ -93,9 +92,9 @@ export default function AddProduct() {
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
-        
+
         {/* Back Button */}
-        <button 
+        <button
           onClick={() => router.push('/vendor/dashboard')}
           className="flex items-center gap-2 text-sm font-semibold text-gray-600 hover:text-gray-900 mb-6 transition-colors"
         >
@@ -115,9 +114,8 @@ export default function AddProduct() {
 
         {/* Message Alert */}
         {message && (
-          <div className={`p-4 rounded-lg mb-6 border font-medium text-sm ${
-            message.type === 'success' ? 'bg-green-50 border-green-200 text-green-700' : 'bg-red-50 border-red-200 text-red-700'
-          }`}>
+          <div className={`p-4 rounded-lg mb-6 border font-medium text-sm ${message.type === 'success' ? 'bg-green-50 border-green-200 text-green-700' : 'bg-red-50 border-red-200 text-red-700'
+            }`}>
             {message.type === 'success' ? '✅ ' : '⚠️ '} {message.text}
           </div>
         )}
@@ -125,13 +123,13 @@ export default function AddProduct() {
         {/* Main Form Card */}
         <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 sm:p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
-            
+
             {/* Product Name */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1.5 flex items-center gap-1.5">
                 <Tag className="w-4 h-4 text-gray-400" /> Product Title / Name *
               </label>
-              <input 
+              <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -144,7 +142,7 @@ export default function AddProduct() {
             {/* Description */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1.5">Product Description</label>
-              <textarea 
+              <textarea
                 rows={4}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -159,7 +157,7 @@ export default function AddProduct() {
                 <label className="block text-sm font-semibold text-gray-700 mb-1.5 flex items-center gap-1.5">
                   <DollarSign className="w-4 h-4 text-gray-400" /> Selling Price (Rs.) *
                 </label>
-                <input 
+                <input
                   type="number"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
@@ -173,7 +171,7 @@ export default function AddProduct() {
                 <label className="block text-sm font-semibold text-gray-700 mb-1.5 flex items-center gap-1.5">
                   <DollarSign className="w-4 h-4 text-gray-400" /> Compare Price / Old Price (Rs.)
                 </label>
-                <input 
+                <input
                   type="number"
                   value={comparePrice}
                   onChange={(e) => setComparePrice(e.target.value)}
@@ -189,7 +187,7 @@ export default function AddProduct() {
                 <label className="block text-sm font-semibold text-gray-700 mb-1.5 flex items-center gap-1.5">
                   <Layers className="w-4 h-4 text-gray-400" /> Stock Quantity *
                 </label>
-                <input 
+                <input
                   type="number"
                   value={stock}
                   onChange={(e) => setStock(e.target.value)}
@@ -201,7 +199,7 @@ export default function AddProduct() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-1.5">Category</label>
-                <select 
+                <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                   className="w-full px-4 py-2.5 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -218,7 +216,7 @@ export default function AddProduct() {
             {/* Image URL input */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1.5">Product Image URL</label>
-              <input 
+              <input
                 type="text"
                 value={imageUrl}
                 onChange={(e) => setImageUrl(e.target.value)}
